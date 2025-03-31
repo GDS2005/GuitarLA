@@ -113,3 +113,25 @@ Las dependencias van dentro de "[]", cada vez que cambie (Ej: Auth) se ejecutar�
 ``
 
 Primero muestra Deslogeado y luego de 3 segundos Logeado
+
+## Diferencia entre Statements y Expresiones
+
+Statements son instrucciones para hacer algo. If, Error, While, For, Variables, etc
+
+Expresiones producen un valor nuevo. Ternario, Array Method que genere un nuevo Array o .map genera un nuevo arreglo.
+
+## Props
+
+Forma de compartir información entre componentes. Los componentes utilizan props para comunicarse entre ellos. Los props son similares a los atributos HTML, pero se les puede pasar arreglos, objetos o funciones.
+
+Solamente se le puede pasar del Padre al Hijo.
+
+´´
+<Header nombreProp= {datos /state o funciones} />
+´´
+o
+´´
+<Users users={users} setUsers={setUsers} title="Listado Usuarios"/>
+´´
+
+-- ABRIENDO LLAVES PODEMOS PONER CÓDIGO DE JAVESCRIPT --

@@ -6,6 +6,7 @@ import { db } from '../data/db'
 
 
 function App() {
+    //pasamos base de datos
     const [data, setData] = useState(db);
 
     return (
@@ -14,12 +15,16 @@ function App() {
 
             <main className="container-xl mt-5">
                 <h2 className="text-center">Nuestra Colección</h2>
-
                 <div className="row mt-5"> 
-                    <Product />
+                    {/* En este caso, podemos hacer que el arrow function tenga el return implicito poniendo () => () en vez de () => {return}*/}
+                    {data.map((product) => (
+                        <Product 
+                            key = {product.id}
+                            product={product}
+                        />
+                    ))} 
                 </div>
             </main>
-
 
             <footer className="bg-dark mt-5 py-5">
                 <div className="container-xl">
