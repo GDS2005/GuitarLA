@@ -6,12 +6,29 @@ import { db } from '../data/db'
 
 
 function App() {
-    //pasamos base de datos
+    //Le damos el valor de la base de datos a data.
     const [data, setData] = useState(db);
+    const [cart, setCart] = useState([]);
+
+    function addToCart(product) {
+        const itemExists = cart.findIndex((item) => item.id === product.id)
+        if(itemExists >= 0){
+            console.log("Ya existe, agregando otro.")
+            const updatedCart = [...cart]
+            updatedCart[itemExists].quantity++
+            setCart(updatedCart)
+        }else{
+            console.log("No existe, agregando...")
+            product.quantity = 1
+            setCart(prevCart => [...prevCart, product])
+        }
+    }    
 
     return (
         <>
-            <Header />
+            <Header 
+                cart={cart}
+            />
 
             <main className="container-xl mt-5">
                 <h2 className="text-center">Nuestra Colección</h2>
@@ -21,6 +38,7 @@ function App() {
                         <Product 
                             key = {product.id}
                             product={product}
+                            addToCart={addToCart}
                         />
                     ))} 
                 </div>

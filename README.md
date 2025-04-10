@@ -64,14 +64,21 @@ Ej:
 ### useState
 
 La pieza central de React. Variable con información relevante en una aplicación. Algunas veces se ocupa en un componente especifico o se pueden compartir. Es la interacción de un usuario con el sitio Ej: Un usuario autenticado o no
-``
-import { useState } from "react"
 
-const [customer, setCustomer] = useState({}); -> Valor inicial
-const [total, setTotal] = useState(0);
-const [products, setProducts] = useState([]);
-const [modal, setModal] = useState(false); -> Más clara, el modal inicia en false.
-``
+    import { useState } from "react"
+
+    const [customer, setCustomer] = useState({}); -> Valor inicial
+    const [total, setTotal] = useState(0);
+    const [products, setProducts] = useState([]);
+    const [modal, setModal] = useState(false); -> Más clara, el modal inicia en false.
+
+Los State son inmutables, lo mejor que se podría hacer para es hacer una copia del mismo y ahi modificarlo.
+
+    const [cart, setCart] = useState([]);
+
+    const updatedCart = [...cart]
+    updatedCart[itemExists].quantity++
+    setCart(updatedCart)
 
 ### useEffect
 
@@ -79,23 +86,22 @@ Siempre es un callback, que despendiendo como lo declare va a realizar diferente
 
 import { useEffect } from "react"
 
-``
-useEffect(() => {
-    console.log("El componente esta listo");
-}, [])
-``
+
+    useEffect(() => {
+        console.log("El componente esta listo");
+    }, [])
+
 
 Se ejecuto automaticamente cuando el componente esta listo, es un buen lugar para colocar código para consultar una API o LocalStorage. Debido a que le podemos pasar una dependencia (State) va a estar escuchando los cambios, así que se puede actualizar el componente cuando eso suceda. Dependiendo de lo que le pasemos va a hacer algo distinto
 
-import { useEffect } from "react"
+    import { useEffect } from "react"
 
-useEffect(() => {
-    console.log("El componente esta listo");
-},[])
+    useEffect(() => {
+        console.log("El componente esta listo");
+    },[])
 
 Las dependencias van dentro de "[]", cada vez que cambie (Ej: Auth) se ejecutará nuevamente
 
-``
     const [auth, setAuth] = useState(false);
 
     useEffect(() => {
@@ -110,7 +116,7 @@ Las dependencias van dentro de "[]", cada vez que cambie (Ej: Auth) se ejecutar�
     setTimeout(() => {
         setAuth(true)
     }, 3000);
-``
+
 
 Primero muestra Deslogeado y luego de 3 segundos Logeado
 
@@ -126,12 +132,31 @@ Forma de compartir información entre componentes. Los componentes utilizan prop
 
 Solamente se le puede pasar del Padre al Hijo.
 
-´´
-<Header nombreProp= {datos /state o funciones} />
-´´
+
+    <Header nombreProp= {datos /state o funciones} />
+
 o
-´´
-<Users users={users} setUsers={setUsers} title="Listado Usuarios"/>
-´´
+
+    <Users users={users} setUsers={setUsers} title="Listado Usuarios"/>
+
 
 -- ABRIENDO LLAVES PODEMOS PONER CÓDIGO DE JAVESCRIPT --
+
+## Eventos
+
+Los eventos son camelCase, ejemplo: onClick, onChange a diferencia de HTML puro. También, este codigo va entre llaves.
+
+    <form onSubmit={handleSubmit();}>
+        <button type="submit">Submit</button>
+    </form>
+
+
+Ejemplo: setCart(prevCart => [...cart, product]) 
+
+## ¿Que significa la inmutabilidad en React?
+
+Podemos ver que funciones mutan o no al array en: doesitmutate.xyz
+
+        setCart(prevCart => [...prevCart, product])
+        console.log(prevCart)
+
