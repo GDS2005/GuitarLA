@@ -80,6 +80,10 @@ Los State son inmutables, lo mejor que se podría hacer para es hacer una copia 
     updatedCart[itemExists].quantity++
     setCart(updatedCart)
 
+Se puede derivar un state.
+
+    const isEmpty = () => cart.lenght === 0
+
 ### useEffect
 
 Siempre es un callback, que despendiendo como lo declare va a realizar diferentes acciones.
