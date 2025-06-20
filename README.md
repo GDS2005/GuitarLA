@@ -30,3 +30,26 @@ Asegúrate de tener instalado:
     npm run build
     # o
     yarn build
+
+
+## Notas 2
+
+Se pueden crear Hooks personalizados para organizar el código. Por ejemplo; useAuth.js, para esto debemos crear primero una carpeta hooks en src 
+
+
+CREATE TABLE products (
+    product_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL
+);
+
+## Typescript
+
+La diferencia con el javascript tradicional es que agrega un sistema de tipos estático a Javascript, lo que permite detectar errores y proporciona herramientras de desarroll más solidas.
+
+### Ventajas
+
+Permite especificar los tipos de variable, parámetros de función, valores de retorno y más. Esto brinda la capacidad de realizar comprobaciones de tipos durante la compilación y deetectar posibles errores antes de que el código se ejecute.
+
